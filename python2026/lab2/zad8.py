@@ -1,5 +1,5 @@
-﻿# Zadanie 8: wczytaj a, b, c i oblicz pierwiastki rownania kwadratowego ax^2 + bx + c = 0.
-import cmath
+# Zadanie 8: wczytaj a, b, c i oblicz pierwiastki rownania kwadratowego ax^2 + bx + c = 0.
+import math
 
 a = float(input("Podaj a: "))
 b = float(input("Podaj b: "))
@@ -10,17 +10,26 @@ if a == 0:
         print("To nie jest rownanie (a=0 i b=0).")
     else:
         x = -c / b
-        print(f"Rownanie liniowe, jedno rozwiazanie: x = {x}")
+        print("Rownanie liniowe, jedno rozwiazanie: x =", x)
 else:
-    delta = b**2 - 4 * a * c
-    sqrt_delta = cmath.sqrt(delta)
-    x1 = (-b - sqrt_delta) / (2 * a)
-    x2 = (-b + sqrt_delta) / (2 * a)
+    delta = b * b - 4 * a * c
 
     if delta > 0:
-        print(f"Dwa pierwiastki rzeczywiste: x1 = {x1.real}, x2 = {x2.real}")
+        sqrt_delta = math.sqrt(delta)
+        x1 = (-b - sqrt_delta) / (2 * a)
+        x2 = (-b + sqrt_delta) / (2 * a)
+        print("Dwa pierwiastki rzeczywiste: x1 =", x1, ", x2 =", x2)
     elif delta == 0:
-        print(f"Jeden pierwiastek podwojny: x = {x1.real}")
+        x = -b / (2 * a)
+        print("Jeden pierwiastek podwojny: x =", x)
     else:
-        print(f"Pierwiastki zespolone: x1 = {x1}, x2 = {x2}")
+        sqrt_delta = math.sqrt(-delta)
+        real_part = -b / (2 * a)
+        imag_part = sqrt_delta / (2 * a)
 
+        x1_text = str(real_part) + " - " + str(imag_part) + "i"
+        x2_text = str(real_part) + " + " + str(imag_part) + "i"
+
+        print("Pierwiastki zespolone:")
+        print("x1 =", x1_text)
+        print("x2 =", x2_text)

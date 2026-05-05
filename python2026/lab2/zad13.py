@@ -1,6 +1,11 @@
-﻿# Zadanie 13: uprosc kod z zadania 11, stosujac jednolinijkowe if/else.
-passwords = ("python123", "lab_haslo")
+# Zadanie 13: wersja zadania 11 napisana bardziej podstawowo.
+password1 = "python123"
+password2 = "lab_haslo"
 my_name = "Jan Kowalski"
 
-print(my_name) if input("Podaj haslo: ") in passwords else print("Bledne haslo.")
+entered = input("Podaj haslo: ")
 
+if entered == password1 or entered == password2:
+    print(my_name)
+else:
+    print("Bledne haslo.")

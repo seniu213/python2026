@@ -1,4 +1,4 @@
-﻿# Zadanie 1: znajdz geny wspolne dla 3 pacjentow, wspolne dla 2 pacjentow oraz wystepujace tylko w 1 chorobie.
+# Zadanie 1: znajdz geny wspolne dla 3 pacjentow, wspolne dla 2 pacjentow oraz wystepujace tylko w 1 chorobie.
 set_gene1 = {
     "SLC19A2",
     "ATP7B",
@@ -71,22 +71,50 @@ set_gene3 = {
     "ERSS4",
 }
 
-all_common = set_gene1 & set_gene2 & set_gene3
-common_for_two = ((set_gene1 & set_gene2) | (set_gene1 & set_gene3) | (set_gene2 & set_gene3)) - all_common
+all_common = set()
+for gene in set_gene1:
+    if gene in set_gene2 and gene in set_gene3:
+        all_common.add(gene)
 
-counts = {}
-for gene in set_gene1 | set_gene2 | set_gene3:
-    counts[gene] = int(gene in set_gene1) + int(gene in set_gene2) + int(gene in set_gene3)
-only_one_disease = {gene for gene, count in counts.items() if count == 1}
+common_for_two = set()
+for gene in set_gene1:
+    if gene in set_gene2 and gene not in all_common:
+        common_for_two.add(gene)
+    if gene in set_gene3 and gene not in all_common:
+        common_for_two.add(gene)
+
+for gene in set_gene2:
+    if gene in set_gene3 and gene not in all_common:
+        common_for_two.add(gene)
+
+all_genes = set()
+for gene in set_gene1:
+    all_genes.add(gene)
+for gene in set_gene2:
+    all_genes.add(gene)
+for gene in set_gene3:
+    all_genes.add(gene)
+
+only_one_disease = set()
+for gene in all_genes:
+    count = 0
+    if gene in set_gene1:
+        count = count + 1
+    if gene in set_gene2:
+        count = count + 1
+    if gene in set_gene3:
+        count = count + 1
+
+    if count == 1:
+        only_one_disease.add(gene)
 
 print("a) Wspolne dla wszystkich pacjentow:")
-print(sorted(all_common))
+print(sorted(list(all_common)))
 print()
 
 print("b) Wspolne dokladnie dla 2 pacjentow:")
-print(sorted(common_for_two))
+print(sorted(list(common_for_two)))
 print()
 
 print("c) Wystepuja tylko w 1 chorobie:")
-print(sorted(only_one_disease))
-
+print(sorted(list(only_one_disease)))

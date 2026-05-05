@@ -1,4 +1,4 @@
-﻿# Zadanie 2: sprawdz czy geny FGFR4 i FGERA4 wystepuja na liscie oraz podaj ich indeksy.
+# Zadanie 2: sprawdz czy geny FGFR4 i FGERA4 wystepuja na liscie oraz podaj ich indeksy.
 lista_gene1 = [
     "SLC19A2",
     "ATP7B",
@@ -23,10 +23,24 @@ lista_gene1 = [
     "ERSS4",
 ]
 
-for target in ("FGFR4", "FGERA4"):
-    indices = [i for i, gene in enumerate(lista_gene1) if gene == target]
-    if indices:
-        print(f"Gen {target} wystepuje na indeksach: {indices}")
-    else:
-        print(f"Gen {target} nie wystepuje na liscie.")
+target = "FGFR4"
+indices = []
+for i in range(len(lista_gene1)):
+    if lista_gene1[i] == target:
+        indices.append(i)
 
+if len(indices) > 0:
+    print("Gen " + target + " wystepuje na indeksach: " + str(indices))
+else:
+    print("Gen " + target + " nie wystepuje na liscie.")
+
+target = "FGERA4"
+indices = []
+for i in range(len(lista_gene1)):
+    if lista_gene1[i] == target:
+        indices.append(i)
+
+if len(indices) > 0:
+    print("Gen " + target + " wystepuje na indeksach: " + str(indices))
+else:
+    print("Gen " + target + " nie wystepuje na liscie.")

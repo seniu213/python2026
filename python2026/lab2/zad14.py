@@ -1,6 +1,16 @@
-﻿# Zadanie 14: utworz funkcje liczaca iloraz 3 parzystych liczb, uzywajac one line statement.
+# Zadanie 14: utworz funkcje liczaca iloraz 3 parzystych liczb.
 def quotient_three_even(a, b, c):
-    return a / b / c if all(n % 2 == 0 for n in (a, b, c)) and b != 0 and c != 0 else None
+    if a % 2 != 0:
+        return None
+    if b % 2 != 0:
+        return None
+    if c % 2 != 0:
+        return None
+    if b == 0 or c == 0:
+        return None
+
+    result = a / b / c
+    return result
 
 
 a = int(input("Podaj pierwsza liczbe parzysta: "))
@@ -12,5 +22,4 @@ result = quotient_three_even(a, b, c)
 if result is None:
     print("Blad: podaj 3 liczby parzyste, a b i c nie moga byc rowne 0.")
 else:
-    print(f"Iloraz = {result}")
-
+    print("Iloraz =", result)
